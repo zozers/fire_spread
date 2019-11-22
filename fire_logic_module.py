@@ -49,8 +49,6 @@ def find_fire(map):
         for j in range(len(map[i])):
             if map[i][j][0] == 2:
                 fire.append((i,j))
-            elif map[i][j][0] == 4: # lightning is still considered a fire and so it can spread fire.
-                fire.append((i,j))
     return fire
 
 
@@ -84,10 +82,7 @@ def toggle_fire_and_lightning(data,fire_loc):
     for (i,j) in fire_loc:
         if data[i][j][1] == 0 and data[i][j][0] == 2:
             data[i][j][0] = 0
-        if data[i][j] == [4,2]: # this will change the lightning color to fire's color
-            data[i][j] = [2,2]
-        if data[i][j][1] > 0: # this is for lighting which lasts 3 iterations
-            data[i][j][1] -= 1
+
 
 
 

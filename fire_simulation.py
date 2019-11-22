@@ -13,6 +13,23 @@ destination = "fire/"
 # so there are not image conflicts. If you want to save them, move them to a different location
 # before running again
 
+
+#things I need to add and look at
+
+#fire spread
+#fire burn for how long
+#density
+#how many adjacent fires needed to spread
+
+#fuel reduction strategys in california
+
+#wind
+
+#graph the number of patches as a function of the area
+
+
+
+
 if os.path.exists(destination):
     shutil.rmtree(destination)
 if os.path.exists(destination+"/fire_spread.gif"):
@@ -24,9 +41,9 @@ except FileExistsError:
     pass
 
 # This is where the user inputs the grid size fire spread probability and lightning probability.
-n = 40
+n = 400
 
-spread_const = 60
+spread_const = 50
 
 
 # This function takes the array or [1] (tree), [0](burnt tree), [2](fire), and [4](lightning) and replaces
@@ -71,9 +88,10 @@ graph_array(color_grid1, n, "01") #makes png
 iterations = 2
 iteration_str = "02"
 
+print("running simulation...")
+
 while len(find_fire(map)) > 0:
     data = fire_alg(map,spread_const)
-    # lightning(data,lightning_const)
     color_grid = grid_to_color(data, n)
     graph_array(color_grid, n, iteration_str)
     iterations += 1
@@ -85,7 +103,7 @@ while len(find_fire(map)) > 0:
         iteration_str = str(iterations)
 
 
-file_names = sorted((fn for fn in os.listdir(destination) if fn.endswith('.png'))) # sorting png's to be in order based on goven name
+file_names = sorted((fn for fn in os.listdir(destination) if fn.endswith('.png'))) # sorting png's to be in order based on given name
 
 # This is where the gif of the png's is made using the library imagio
 images = []
